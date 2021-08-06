@@ -128,18 +128,26 @@ def mainMenu():
     cls.pack(side=TOP)
 
 
+def setFrame():
+    settings.tries = settings.dbtries.get()
+    dbMenu()
+
+
 def dbMenu():
     window.changeFrame(txt='Debug Menu')
-    window.changeSize(yBuffer=200)
+    window.changeSize(yBuffer=150)
 
     hangman = Label(root, text=Images[f'hm{settings.tries}'])
-    tryBtn = Button(root, text='Try', command=changeTries)
+    frameSel = Spinbox(root, from_=0, to=6, value=0, width=10, wrap=True, textvariable=settings.dbtries)
+    setBtn = Button(root, text='Set Frame', command=setFrame)
 
     window.add(hangman)
-    window.add(tryBtn)
+    window.add(frameSel)
+    window.add(setBtn)
 
     hangman.pack(side=TOP, pady=10)
-    tryBtn.pack(side=TOP)
+    frameSel.pack(side=TOP, pady=10)
+    setBtn.pack(side=TOP)
 
 
 if __name__ == '__main__':
