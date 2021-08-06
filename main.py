@@ -52,7 +52,10 @@ def changeTries():
         print(settings.tries)
     if settings.tries >= 7:
         settings.tries = 0
-    gameMenu()
+    if db:
+        dbMenu()
+    else:
+        gameMenu()
 
 
 def gameMenu():
@@ -125,6 +128,20 @@ def mainMenu():
     cls.pack(side=TOP)
 
 
+def dbMenu():
+    window.changeFrame(txt='Debug Menu')
+    window.changeSize(yBuffer=200)
+
+    hangman = Label(root, text=Images[f'hm{settings.tries}'])
+    tryBtn = Button(root, text='Try', command=changeTries)
+
+    window.add(hangman)
+    window.add(tryBtn)
+
+    hangman.pack(side=TOP, pady=10)
+    tryBtn.pack(side=TOP)
+
+
 if __name__ == '__main__':
     root = Tk()
     window = Window(root, (100, 120))
@@ -134,6 +151,9 @@ if __name__ == '__main__':
     title = Label(root)
     title.pack(side=TOP, pady=10)
 
-    mainMenu()
+    if db:
+        dbMenu()
+    else:
+        mainMenu()
 
     root.mainloop()
