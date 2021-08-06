@@ -138,16 +138,19 @@ def dbMenu():
     window.changeSize(yBuffer=150)
 
     hangman = Label(root, text=Images[f'hm{settings.tries}'])
-    frameSel = Spinbox(root, from_=0, to=6, value=0, width=10, wrap=True, textvariable=settings.dbtries)
+    frameSel = Spinbox(root, from_=0, to=6, width=10, wrap=True, textvariable=settings.dbtries)
     setBtn = Button(root, text='Set Frame', command=setFrame)
+    cls = Button(root, text='Close', command=root.destroy)
 
     window.add(hangman)
     window.add(frameSel)
     window.add(setBtn)
+    window.add(cls)
 
     hangman.pack(side=TOP, pady=10)
     frameSel.pack(side=TOP, pady=10)
     setBtn.pack(side=TOP)
+    cls.pack(side=TOP)
 
 
 if __name__ == '__main__':
